@@ -1,0 +1,12 @@
+{% extends "base_vue.html" %}
+
+{% block content %}
+    <div class="col">
+        <form action="." method="get">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+    </div>
+    {{ result }}
+{% endblock %}
