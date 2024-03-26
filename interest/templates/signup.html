@@ -1,13 +1,33 @@
-{% extends "base_vue.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-    <div class="container-fluid my-4 col-md-6">
-    <h1><b>Sign up</b></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <div class="login-form bg-white mt-4 p-4">
+                <form action="." method="post" class="row g-3">
+                    {% csrf_token %}
+                    <h4 class="col-12 text-center">Registrace</h4>
+                    <div class="col-12">
+                        {{form.username}}
+                    </div>
+                    <div class="col-12">
+                        {{form.password1}}
+                    </div>
 
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Sign up">
-    </form>
+                        <div class="col-12">
+                            {{form.password2}}
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-outline-success float-right">Registrace</button>
+                    </div>
+                </form>
+                <hr class="mt-4">
+                <div class="col-12">
+                    <p>Máte účet? <a href="#"><button type="button" class="btn" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Přihlášení</button></a></p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

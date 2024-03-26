@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+    Složené úročení
+{% endblock %}
+{% block content %}
+    <div class="row">
+    <div class="card" style="width: 23rem; height: 23rem; margin-top: 2.5rem; margin-left: auto;">
+    <form  class="row g-3"action="." method="post">
+        <div class="input-box">
+            {% csrf_token %}
+            <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto; margin-top: 2.5rem;">
+                <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                <div class="form-floating">
+                    {{ form.basis }}
+                    <label for="floatingInput">Počáteční jistina</label>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto;">
+                <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                <div class="form-floating">
+                    {{ form.rate }}
+                    <label for="floatingInput">Úroková sazba</label>
+                </div>
+            </div>
+            <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto;">
+                <span class="input-group-text"><i class="bi bi-hourglass"></i></span>
+                <div class="form-floating">
+                    {{ form.period }}
+                    <label for="floatingInput">Počet období</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-outline-success" style="--bs-btn-padding-y: .20rem;">
+                <i class="bi bi-calculator"></i>Vypočítat
+            </button>
+        </div>
+    </form>
+    </div>
+        <div class="card" style="width: 15rem; margin-left: auto;height:15rem; margin-top: 2.5rem; margin-right: auto;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Počáteční jistina: {{ base }}</li>
+                <li class="list-group-item">Úroková sazba: {{ rate }} {% if rate %}%{% endif %}</li>
+                <li class="list-group-item">Úročitel: {{ fvif }}</li>
+                <li class="list-group-item">Počet období: {{ period }}</li>
+            </ul>
+            <div class="card-footer text-bg-success p-3">
+                Výsledek: {{ result }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,14 +1,30 @@
-{% extends "base_vue.html" %}
-
+{% extends "base.html" %}
+{% block title %}Přihlášení{% endblock %}
 {% block content %}
-    <h1>{% block title %}Log in{% endblock %}</h1>
-
-    <form method="post" action=".">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button>Log in</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <div class="login-form bg-white mt-4 p-4">
+                <form action="." method="post" class="row g-3">
+                    {% csrf_token %}
+                    <h4 class="col-12 text-center">Přihlášení</h4>
+                    <div class="col-12">
+                        <input type="username" name="username" class="form-control" placeholder="Uživatelské jméno">
+                    </div>
+                    <div class="col-12">
+                        <input type="password" name="password" class="form-control" placeholder="Heslo">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-outline-success float-right">Přihlášení</button>
+                    </div>
+                </form>
+                <hr class="mt-4">
+                <div class="col-12">
+                    <p>Nemáte účet? <a href="#"><button type="button" class="btn" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Registrace</button></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

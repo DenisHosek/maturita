@@ -1,18 +1,31 @@
-{% extends "base_vue.html" %}
+{% extends "base.html" %}
+{% block title %}
+    Změna Hesla
+{% endblock %}
 {% block content %}
-    {% if request.user.is_authenticated %}
-        <h1> {{ user.username }}</h1>
-        <h2>Change password</h2>
-        <form method="post" action=".">
-            <table>
-                {% csrf_token %}
-                {{ form.as_p }}
-            </table>>
-            {% block change %}
-                <input type="submit" value="Change">
-            {% endblock %}
-        </form>
-    {% else %}
-        <h1>You do not have a permision.</h1>
-    {% endif %}
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <div class="login-form bg-white mt-4 p-4">
+                <form action="." method="post" class="row g-3">
+                    {% csrf_token %}
+                    <h4 class="col-12 text-center">Změna Hesla</h4>
+                    <div class="col-12">
+                        <input type="password" name="old_password" class="form-control" placeholder="Staré heslo">
+                    </div>
+                    <div class="col-12">
+                        <input type="password" name="new_password1" class="form-control" placeholder="Nové heslo">
+                    </div>
+                    <div class="col-12">
+                        <input type="password" name="new_password2" class="form-control" placeholder="Potvrzení hesla">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-outline-success float-right">Změna</button>
+                    </div>
+                </form>
+                {% block change %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    </div>
 {% endblock %}

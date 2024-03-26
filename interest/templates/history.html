@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+    Historie
+{% endblock %}
+{% block content %}
+    <h1 class="display-3">Simple Interest</h1>
+    {% for i in sin %}
+    <div class="card" style="width: 15rem; margin-left: auto;height:auto; margin-top: 2.5rem; margin-right: auto;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Počáteční jistina: {{ i.basis }}</li>
+            <li class="list-group-item">Úroková sazba: {{ i.rate }} %</li>
+            <li class="list-group-item">Úrokovací období: {{ i.type }}</li>
+            <li class="list-group-item">Datum vkladu: {{ i.first_day }}.{{ i.first_month }}. {{ i.first_year }}</li>
+            <li class="list-group-item">Datum výběru: {{ i.end_day }}.{{ i.end_month }}. {{ i.end_year }}</li>
+        </ul>
+        <div class="card-footer text-bg-success p-3">
+            Úrok: {{ i.result }}
+        </div>
+    </div>
+        {% endfor %}
+    <h1 class="display-3">Compound Interest</h1>
+
+        {% for i in cin %}
+            <div class="card" style="width: 15rem; margin-left: auto;height:auto; margin-top: 2.5rem; margin-right: auto;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Počáteční jistina: {{ i.basis }}</li>
+                    <li class="list-group-item">Úroková sazba: {{ rate }} %</li>
+                    <li class="list-group-item">Úročitel: {{ i.fvif }}</li>
+                    <li class="list-group-item">Počet období: {{ i.period }}</li>
+                </ul>
+                <div class="card-footer text-bg-success p-3">
+                    Výsledek: {{ i.result }}
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

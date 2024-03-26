@@ -1,12 +1,68 @@
-{% extends "base_vue.html" %}
-
+{% extends "base.html" %}
+{% block title %}
+    Jednoduché úročení
+{% endblock %}
 {% block content %}
-    <div class="col">
-        <form action="." method="get">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit" class="btn btn-success">
+<div class="row">
+    <div class="card" style="width: 23rem; height: 27rem; margin-top: 2.5rem; margin-left: auto;">
+        <form  class="row g-3"action="." method="post">
+            <div class="input-box">
+                {% csrf_token %}
+                <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto; margin-top: 2.5rem;">
+                    <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                    <div class="form-floating">
+                        {{ form.basis }}
+                        <label for="floatingInput">Počáteční jistina</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto;">
+                    <span class="input-group-text"><i class="bi bi-percent"></i></span>
+                    <div class="form-floating">
+                        {{ form.rate }}
+                        <label for="floatingInput">Úroková sazba</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto;">
+                    <div class="input-group">
+                        <span class="input-group-text"></i>Den uložení</span>
+                        {{form.first_day}}
+                        {{form.first_month}}
+                        {{form.first_year}}
+                    </div>
+                </div>
+                <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto;">
+                    <div class="input-group">
+                        <span class="input-group-text">Den výběru</span>
+                        {{form.end_day}}
+                        {{form.end_month}}
+                        {{form.end_year}}
+                    </div>
+                </div>
+                <div class="input-group mb-3" style="width: 18rem; margin-left:auto; margin-right:auto;">
+                    <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                    {{ form.type }}
+                </div>
+
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-outline-success" style="--bs-btn-padding-y: .20rem;">
+                    <i class="bi bi-calculator"></i> Vypočítat
+                </button>
+            </div>
         </form>
     </div>
-    {{ result }}
+    <div class="card" style="width: 15rem; margin-left: auto;height:20rem; margin-top: 2.5rem; margin-right: auto;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Počáteční jistina: {{ base }}</li>
+            <li class="list-group-item">Úroková sazba: {{ rate }} {% if rate %}%{% endif %}</li>
+            <li class="list-group-item">Úrokovací období: {{ type }}</li>
+            <li class="list-group-item">Datum vkladu: {{ fd }}.{{ fm }}. {{ fy }}</li>
+            <li class="list-group-item">Datum výběru: {{ ed }}.{{ em }}. {{ ey }}</li>
+            <li class="list-group-item">Dny: {{ day }}</li>
+        </ul>
+        <div class="card-footer text-bg-success p-3">
+            Úrok: {{ result }}
+        </div>
+    </div>
+</div>
 {% endblock %}
