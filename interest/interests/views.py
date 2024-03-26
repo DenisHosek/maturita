@@ -82,8 +82,8 @@ def cinterest(request):
             period = form.cleaned_data['period']
 
 
-            fvif = round((1+(rate/100))**period)
-            result = basis * int(fvif)
+            fvif = round((1+(rate/100))**period, 2)
+            result = basis * fvif
             if request.user.is_authenticated:
                 instance = form.save(commit=False)
                 instance.fvif = fvif
