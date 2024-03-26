@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-`# Create your tests here.
+# Create your tests here.
 class InterestPageTestCase(TestCase):
     def test_displayIndex(self):
         response = self.client.get(reverse('home'))
