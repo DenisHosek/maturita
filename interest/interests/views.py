@@ -113,6 +113,7 @@ def singup(request):
 def change_pass(request):
     return render(request, "pass_change.html")
 
+@login_required
 def history(request):
     sin = SimpleInterest.objects.filter(user=request.user.id).order_by('-date')
     cin = CompoundInterest.objects.filter(user=request.user.id).order_by('-date')

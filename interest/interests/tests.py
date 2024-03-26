@@ -12,6 +12,22 @@ class InterestPageTestCase(TestCase):
         response = self.client.get(reverse('register'))
         self.assertEqual(response.status_code, 200)
 
+    def test_displayrint(self):
+        response = self.client.get(reverse("interest"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_displayrcint(self):
+        response = self.client.get(reverse("cinterest"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_displaylogt(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_displayrhistory(self):
+        response = self.client.get(reverse("history"))
+        self.assertEqual(response.status_code, 302)
+
     def test_crate_form(self):
         username = 'franta'
         password = '1234DFE56778'
